@@ -1,0 +1,46 @@
+Introduction
+One of the most exciting areas of the current frontier of Physics is particle detection/discovery. Whether its dark matter, 
+neutrinos, or gravity waves there are many intrepid seekers around the globe for looking evidence of these theoretical concepts
+that may unlock new branches of physics that we could only dream of. However, in order to be sure of the discovery of something new,
+we must be able to rule out all other possibilities to be sure we have in fact detected something new. One method for doing this is 
+called Pulse Shape Discrimination (PSD).
+
+What is PSD?
+Some detectors work by absorbing energy from incoming particles and converting it to a signal that can be read in the lab. These signals
+look like waves or pulses of voltage and depending on the characteristics of the pulse shape we can infer certain details that help us 
+identify what caused the signal response, this is PSD.   
+
+How are pulses made?
+Our project uses signals produced from a Stilbene Crystal coupled to a Silicon Photomultiplier(SiPM). You can think of the Stilbene crystal as a net and the SiPM as an amplifier. When something triggers a response on the crystal, it releases a tiny pulse of light which is then picked up by the SiPM and passed along to our detection equipment. 
+
+What do we do with the pulses to identify their source?
+Depending on the method of PSD we choose, there are different ways to analyze the pulse. We could look at the rise/fall times for certain values of the pulse, ie time to go from 60% amplitude to 20%. We could also create a template of each response type and see how they compare to the detected pulse. For this project we will be looking at the area under the curve for the waveforms and seeing how they compare.          
+
+
+Methods
+In order to analyze the pulses, we will find the area enclosed by each waveform and the line V=0(using Pyhton), then plot 
+those values to a histogram to see if we can differentiate between to two types of responses. According to ChatGPT, 
+one common method for PSD is to take a ratio of the of the area of the tail to the total area of the pulse. We will
+use this method and see how it compares to using the total area.
+
+We will use the trapz function in the scipy.integrate package to carry out our area calculations. The program will also find the amplitude of each wave form to create a ratio of the area under the curve starting from the amplitude compared to the total area. Results will be plotted to histograms and their distributions will be compared using statistics. 
+
+
+
+Results/Conclusions
+ 
+When using the ratio method both pulse types give a similar distribution of values of their ratio. When a histogram of the ratio
+values is made for each pulse type, they overlap. The overlap suggests that both pulse types have a similar tail to whole ratio and 
+that the method would need to be adjusted in order to be useful for PSD. Perhaps we could start the tail at 50% of the amplitude instead of 100% or cut the tail earlier(or both).
+A histogram of the total area of each pulse type shows two distinct distributions for each response with almost no overlap. 
+It appears that integrating the entire area under waveform was more effective at differentiating the two types of pulses.
+
+Although this result can be seen visually, it can be verified numerically by looking at the distance between the peaks in terms of standard deviation. The total tail method results in peaks that are seperated by 5 standard deviations while the ratio method peaks are only seperated by 0.23 stardard deviations.  
+These are not the only two methods for Pulse Shape Discrimination and it would be interesting to see if any of the other methods of PSD can differentiate more clearly between the two pulse types 
+
+
+
+
+
+Thank you
+
